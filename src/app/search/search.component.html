@@ -1,0 +1,58 @@
+<div [ngStyle]="{'display': view === 'search'? '':'none'}" class="search">
+  <!-- <ion-card style="width: 100%;"> -->
+  <ion-accordion-group value="filters">
+    <ion-accordion value="filters">
+      <ion-item slot="header" color="light">
+        <ion-label class="label">Filters</ion-label>
+      </ion-item>
+      <div slot="content">
+        <ion-item>
+          <ion-label class="label">Make</ion-label>
+          <select (change)="onMakeSelected($event)" [value]="selectedMake" class="custom-select">
+            <option value="" disabled selected hidden>Select Make</option>
+            <option *ngFor="let option of makes" [value]="option">{{ option }}</option>
+          </select>
+        </ion-item>
+        <ion-item>
+          <ion-label class="label">Model</ion-label>
+          <select (change)="onModelSelected($event)" [value]="selectedModel" class="custom-select">
+            <option value="" disabled selected hidden>Select Model</option>
+            <option *ngFor="let option of models" [value]="option">{{ option }}</option>
+          </select>
+        </ion-item>
+        <ion-item>
+          <ion-label class="label">Trim</ion-label>
+          <select (change)="onTrimSelected($event)" [value]="selectedTrim" class="custom-select">
+            <option value="" disabled selected hidden>Select Trim</option>
+            <option *ngFor="let option of trims" [value]="option">{{ option }}</option>
+          </select>
+        </ion-item>
+        <ion-item>
+          <ion-label class="label">Year</ion-label>
+          <select (change)="onYearSelected($event)" [value]="selectedYear" class="custom-select">
+            <option value="" disabled selected hidden>Select Year</option>
+            <option *ngFor="let option of years" [value]="option">{{ option }}</option>
+          </select>
+        </ion-item>
+        <ion-toolbar>
+          <ion-buttons class="buttons">
+            <ion-button class="button" (click)="search()">Search</ion-button>
+            <ion-button class="button" (click)="clearFilters()">Clear</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <!-- </ion-card> -->
+  <!-- <ion-card> -->
+  <div>
+    <h5 style="margin: 8px;">Result ({{list.length}})</h5>
+    <app-key *ngFor="let item of list" [data]="item" (event)="handleEvent($event)"></app-key>
+  </div>
+  <!-- </ion-card> -->
+</div>
+<div *ngIf=" view === 'inventory'">
+  <p>test</p>
+  <app-inventory (event)="cancelUpdate()" [mode]="'edit'" [makes]="makes" [models]="models" [trims]="trims"
+    [key]="updateKey"></app-inventory>
+</div>

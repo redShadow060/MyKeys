@@ -1,0 +1,38 @@
+.search{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons{
+    min-height: 36px;
+    .button{
+      width: 50%;
+    //   min-height: 6px;
+    }
+  }
+
+  .custom-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--ion-border-color, #dcdcdc);
+    border-radius: 4px;
+    background-color: var(--ion-item-background, #fff);
+    font-size: 16px;
+    appearance: none; /* Remove default select styling */
+    -webkit-appearance: none; /* Remove default select styling in Safari */
+    -moz-appearance: none; /* Remove default select styling in Firefox */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 width%3D%2216%22 height%3D%2216%22 viewBox%3D%220 0 16 16%22%3E%3Cpath fill%3D%22%23212121%22 d%3D%22M12 6H4l4 4z%22/%3E%3C/svg%3E'); /* Add custom arrow icon */
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px 12px;
+  }
+  
+  ion-item {
+    --padding-start: 0px;
+  }
+  
+  .label{
+    min-width: 50px;
+    margin: 0 10px;
+  }

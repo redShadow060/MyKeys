@@ -1,0 +1,79 @@
+<div>
+  <!-- <ion-content> -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-select-insert formControlName="type" label="Type" [options]="typeOptions"
+      [reset]="resetSelect"></app-select-insert>
+    <app-select-insert formControlName="maker" label="Maker" [options]="makerOptions"
+      [reset]="resetSelect"></app-select-insert>
+
+    <ion-item>
+      <ion-button style="width: 25%;" size="large" (click)="decrementQuantity()">
+        <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+      </ion-button>
+      <div style="width: 50%;;margin:0px 10px;display: flex;flex-direction: row;">
+        <ion-label class="flex-center">Quantity:</ion-label>
+        <ion-input class="flex-center" type="number" formControlName="quantity"></ion-input>
+      </div>
+      <ion-button style="width: 25%;" size="large" (click)="incrementQuantity()">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button color="secondary" style="min-width: 25%;margin: 25px;" (click)="addItem()">
+      <div style="padding: 0 12px; display: flex; align-items: center;">
+        <ion-icon slot="icon-only" name="add-outline" style="color: white; font-size: 25px;"></ion-icon>
+        Add compatible vehicule
+      </div>
+    </ion-button>
+
+    <ng-container formArrayName="vehicles">
+      <div *ngFor="let vehicleForm of vehicles.controls; let i = index" [formGroupName]="i">
+        <ion-accordion-group value="filters">
+          <ion-accordion value="filters">
+            <ion-item slot="header" color="light">
+              <ion-label style="margin: 0 7px;">Vehicle match #{{i+1}}</ion-label>
+              <ion-button color="danger" size="small" slot="end" *ngIf="vehicles.length > 1"
+                (click)="deleteCompatibleVehicle(i)">
+                <ion-icon slot="icon-only" name="trash-outline" style="font-size: x-large;"></ion-icon>
+              </ion-button>
+            </ion-item>
+            <div slot="content">
+              <app-select-insert formControlName="make" label="Make" [options]="makes"
+                [reset]="resetSelect"></app-select-insert>
+              <app-select-insert formControlName="model" label="Model" [options]="models"
+                [reset]="resetSelect"></app-select-insert>
+              <app-select-insert formControlName="trim" label="Trim" [options]="trims"
+                [reset]="resetSelect"></app-select-insert>
+              <ion-item>
+                <ion-label class="label">Year From:</ion-label>
+                <select formControlName="yearFrom" class="custom-select">
+                  <option value="" disabled selected hidden>Select Year</option>
+                  <option *ngFor="let option of years" [value]="option">{{ option }}</option>
+                </select>
+              </ion-item>
+              <ion-item>
+                <ion-label class="label">Year To:</ion-label>
+                <select formControlName="yearTo" class="custom-select">
+                  <option value="" disabled selected hidden>Select Year</option>
+                  <option *ngFor="let option of years" [value]="option">{{ option }}</option>
+                </select>
+              </ion-item>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+    </ng-container>
+
+    <ion-item>
+      <ion-label>Note:</ion-label>
+      <ion-textarea formControlName="note"></ion-textarea>
+    </ion-item>
+
+    <ion-button *ngIf="!key" [disabled]="form.invalid" type="submit" expand="full">Submit</ion-button>
+    <ion-button *ngIf="key && mode=== 'edit'" color="warning" [disabled]="form.invalid" expand="full"
+      (click)="save()">Save</ion-button>
+    <ion-button *ngIf="key && mode=== 'edit'" expand="full" (click)="cancel()">Cancel</ion-button>
+    <ion-toast trigger="open-toast" message="The record has been saved successfully" [duration]="3000"></ion-toast>
+  </form>
+  <!-- </ion-content> -->
+</div>

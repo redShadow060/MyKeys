@@ -1,0 +1,38 @@
+.label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 18px;
+    .quantity{
+        background-color: chocolate;
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: white;
+    }
+}
+.flex {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.content {
+    padding: 10px;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+ion-item {
+    --padding-start: 0px;
+  }
+  ion-modal {
+    z-index: 9999;
+  }
+  
+  ion-menu {
+    z-index: 10000;
+  }

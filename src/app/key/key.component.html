@@ -1,0 +1,90 @@
+<ion-accordion-group style="margin-bottom: 8px;">
+  <ion-accordion>
+    <ion-item slot="header" color="light">
+      <ion-label class="label">
+        <div>{{data.type}} - {{data.maker}}</div>
+        <!-- <div class="quantity">{{data.quantity}}</div> -->
+      </ion-label>
+      <ion-badge slot="end" [color]="getColor(data.quantity)">{{data.quantity}}</ion-badge>
+    </ion-item>
+    <div slot="content" class="content">
+      <div>
+        <div class="flex">
+          <div>Type: {{data.type}} </div>
+          <div>Maker: {{data.maker}} </div>
+          <!-- <div>quantity: {{data.quantity}}</div> -->
+        </div>
+        <!-- <ul> -->
+        <!-- <li *ngFor="let item of data.vehicles;"> -->
+        <div *ngFor="let item of data.vehicles;" class="flex"
+          style="    background-color: beige;        border-radius: 8px;        padding: 0 5px; margin: 5px 0;">
+          <div style="width: 100%;">
+            <p><span>Make: </span>{{item.make}}</p>
+            <p><span>Trim: </span>{{item.trim}}</p>
+          </div>
+          <div style="width: 100%;">
+            <p><span>Model: </span>{{item.model}}</p>
+            <p><span>Years: </span>{{item.yearFrom}} - {{item.yearTo}}</p>
+          </div>
+        </div>
+        <!-- </li> -->
+        <!-- </ul> -->
+      </div>
+      <div>Note: {{data.note}}</div>
+      <div>
+        <!-- <ion-buttons> -->
+        <ion-button expand="open-modal3" expand="block" size="small" style="width: 100%;--color: white;" color="warning"
+          shape="round" (click)="open('delete')">
+          update
+        </ion-button>
+        <!-- </ion-buttons> -->
+        <ion-modal trigger="open-modal3" (willDismiss)="onWillDismiss($event)">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()">Cancel</ion-button>
+                </ion-buttons>
+                <ion-title>Update record</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+                <ion-item>
+                  <ion-button style="width: 25%;" size="large" (click)="decrementQuantity()">
+                    <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+                  </ion-button>
+                  <div style="width: 50%;;margin:0px 10px;display: flex;flex-direction: row;">
+                    <ion-label class="flex-center">Quantity:</ion-label>
+                    <ion-input class="flex-center" type="number" [(ngModel)]="quantity"></ion-input>
+                  </div>
+                  <ion-button style="width: 25%;" size="large" (click)="incrementQuantity()">
+                    <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-item>
+              <div>
+                <h5>Edit ?</h5>
+                <ion-button color="warning" (click)="editKey()">Edit</ion-button>
+              </div>
+              <div>
+                <h5>Or delete ?</h5>
+                <ion-button color="danger" (click)="showConfirmation(true)">Delete</ion-button>
+                <div *ngIf="show">
+                  <p>Are you sure?</p>
+                  <div>
+                    <ion-button color="danger" (click)="deleteKey()">Yes</ion-button>
+                    <ion-button (click)="showConfirmation(false)">No</ion-button>
+                  </div>
+                </div>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>

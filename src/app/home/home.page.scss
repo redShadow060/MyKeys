@@ -1,0 +1,96 @@
+// #container {
+//   text-align: center;
+
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// #container strong {
+//   font-size: 20px;
+//   line-height: 26px;
+// }
+
+// #container p {
+//   font-size: 16px;
+//   line-height: 22px;
+
+//   color: #8c8c8c;
+
+//   margin: 0;
+// }
+
+// #container a {
+//   text-decoration: none;
+// }
+
+.buttons{
+  min-height: 56px;
+  .button{
+    width: 50%;
+    min-height: 56px;
+  }
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  // height: 100%;
+  // height: -webkit-fill-available;
+}
+
+// .content-wrapper {
+//   flex: 1;
+//   display: flex;
+//   height: calc(100% - 56px); // Adjust the height if necessary
+//   overflow-y: auto; // Add overflow auto to handle any overflow
+// }
+
+// .full-height-card {
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+// }
+ion-modal {
+  z-index: 9999;
+}
+
+ion-menu {
+  z-index: 10000;
+}
+
+.menu-panel {
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: -200px;
+  transition: left 0.3s ease;
+}
+
+.menu-panel.open {
+  left: 0;
+}
+
+.menu-panel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-panel li {
+  padding: 15px;
+  border-bottom: 1px solid #444;
+}
+
+.menu-panel li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+button {
+  margin-top: 20px;
+}

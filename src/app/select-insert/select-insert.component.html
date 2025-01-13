@@ -1,0 +1,19 @@
+<div>
+  <ion-item *ngIf="!showInput">
+    <ion-label class="label">{{label}}:</ion-label>
+    <select id="mySelect" (change)="onSelectChange($event)" [disabled]="disabled" [value]="value" class="custom-select">
+      <option value="" disabled selected hidden> - </option>
+      <option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </option>
+      <option value="insert-new">Insert New</option>
+    </select>
+  </ion-item>
+  <!--  -->
+  <ion-item *ngIf="showInput">
+    <ion-label class="label">{{label}}:</ion-label>
+    <input #input id="custom-input" style="width: -webkit-fill-available; height: 75%; margin: 0 1px;" type="text"
+      [value]="value" (input)="onInputChange($event)" (blur)="onBlur()" [disabled]="disabled" />
+    <ion-button slot="end" color="danger" (click)="removeInput()">Cancel</ion-button>
+  </ion-item>
+</div>
